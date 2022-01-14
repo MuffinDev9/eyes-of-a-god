@@ -101,6 +101,8 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     if (IsMenuOpen == false) {
         MainMenu()
         PlayerCanMove = false
+    } else {
+        blockMenu.closeMenu()
     }
 })
 function MovementSpeed () {
@@ -113,6 +115,7 @@ function MovementSpeed () {
     "Static",
     "Only Horizontal",
     "Only Vertical",
+    "Inverted",
     "Back"
     ], MenuStyle.List, MenuLocation.RightHalf)
     blockMenu.setColors(1, 8)
@@ -785,6 +788,9 @@ blockMenu.onMenuOptionSelected(function (option, index) {
         } else if (option == "Only Vertical") {
             vx = 0
             vy = 100
+        } else if (option == "Inverted") {
+            vx = -100
+            vy = -100
         } else {
             PlayerToggle()
         }
@@ -822,6 +828,8 @@ let vy = 0
 let vx = 0
 let PlayerCanMove = false
 let PlayerExists = false
+game.splash("Welcome.")
+game.splash("Welcome", "To The Land Of The Gods")
 scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
