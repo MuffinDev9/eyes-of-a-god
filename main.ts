@@ -102,7 +102,7 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
         MainMenu()
         PlayerCanMove = false
     } else {
-        blockMenu.closeMenu()
+        CloseMenu()
     }
 })
 function MovementSpeed () {
