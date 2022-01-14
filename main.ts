@@ -798,9 +798,9 @@ blockMenu.onMenuOptionSelected(function (option, index) {
         }
     } else if (OpenMenu == 6) {
         if (option == "On") {
-        	
+            NoWAlls = true
         } else if (option == "Off") {
-        	
+            NoWAlls = false
         } else {
             MainMenu()
         }
@@ -812,6 +812,7 @@ function NoWallsToggle () {
     blockMenu.showMenu(["On", "Off", "Back"], MenuStyle.List, MenuLocation.RightHalf)
     blockMenu.setColors(1, 8)
 }
+let NoWAlls = false
 let OpenMenu = 0
 let IsMenuOpen = false
 let mySprite: Sprite = null
@@ -959,7 +960,7 @@ game.onUpdateInterval(1, function () {
 })
 game.onUpdateInterval(1, function () {
     if (Level == 1) {
-        if (!(false)) {
+        if (!(NoWAlls)) {
             tiles.setTilemap(tilemap`L1`)
         } else {
             tiles.setTilemap(tilemap`L1 Noclip`)
