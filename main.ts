@@ -62,10 +62,23 @@ function BG_Toggle () {
     ], MenuStyle.List, MenuLocation.RightHalf)
     blockMenu.setColors(1, 8)
 }
+function Level2 () {
+    if (!(NoWAlls)) {
+        tiles.setTilemap(tilemap`LEvel 2`)
+    } else {
+        tiles.setTilemap(tilemap`LEvel 2 NoClip`)
+    }
+    Level = 2
+}
 function LevelChange () {
     IsMenuOpen = true
     OpenMenu = 5
-    blockMenu.showMenu(["Blank", "Level 1", "Back"], MenuStyle.List, MenuLocation.RightHalf)
+    blockMenu.showMenu([
+    "Blank",
+    "Level 1",
+    "Level 2",
+    "Back"
+    ], MenuStyle.List, MenuLocation.RightHalf)
     blockMenu.setColors(1, 8)
 }
 function CloseMenu () {
@@ -79,12 +92,12 @@ function CloseMenu () {
     }
 }
 function Level1 () {
-    if (!(false)) {
+    if (!(NoWAlls)) {
         tiles.setTilemap(tilemap`L1`)
     } else {
-        tiles.setTilemap(tilemap`L1 Noclip`)
+        tiles.setTilemap(tilemap`LEvel 2 NoClip`)
     }
-    Level = 1
+    Level = 2
 }
 function PlayerToggle () {
     IsMenuOpen = true
@@ -194,6 +207,8 @@ blockMenu.onMenuOptionSelected(function (option, index) {
             Level0()
         } else if (option == "Level 1") {
             Level1()
+        } else if (option == "Level 2") {
+            Level2()
         } else {
             MainMenu()
         }
