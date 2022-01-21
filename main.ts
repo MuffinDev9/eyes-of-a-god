@@ -63,11 +63,7 @@ function BG_Toggle () {
     blockMenu.setColors(1, 8)
 }
 function Level2 () {
-    if (!(NoWAlls)) {
-        tiles.setTilemap(tilemap`LEvel 2`)
-    } else {
-        tiles.setTilemap(tilemap`LEvel 2 NoClip`)
-    }
+    tiles.setTilemap(tilemap`LEvel 2`)
     Level = 2
 }
 function LevelChange () {
@@ -92,12 +88,8 @@ function CloseMenu () {
     }
 }
 function Level1 () {
-    if (!(NoWAlls)) {
-        tiles.setTilemap(tilemap`L1`)
-    } else {
-        tiles.setTilemap(tilemap`LEvel 2 NoClip`)
-    }
-    Level = 2
+    tiles.setTilemap(tilemap`L1`)
+    Level = 1
 }
 function PlayerToggle () {
     IsMenuOpen = true
@@ -136,6 +128,7 @@ function MovementSpeed () {
 function Level0 () {
     Level = 0
     tiles.setTilemap(tilemap`BlankLevel`)
+    tiles.placeOnTile(mySprite, tiles.getTileLocation(1, 2))
 }
 blockMenu.onMenuOptionSelected(function (option, index) {
     PlayerCanMove = false
@@ -252,6 +245,13 @@ vy = 100
 IsGravityOn = false
 Level = 0
 tiles.setTilemap(tilemap`BlankLevel`)
+game.onUpdate(function () {
+    if (Level > 0) {
+        scene.cameraFollowSprite(mySprite)
+    } else {
+        scene.centerCameraAt(0, 0)
+    }
+})
 game.onUpdateInterval(1, function () {
     if (PlayerCanMove) {
         controller.moveSprite(mySprite, vx, vy)
@@ -265,6 +265,12 @@ game.onUpdateInterval(1, function () {
             tiles.setTilemap(tilemap`L1`)
         } else {
             tiles.setTilemap(tilemap`L1 Noclip`)
+        }
+    } else if (Level == 2) {
+        if (!(NoWAlls)) {
+            tiles.setTilemap(tilemap`LEvel 2`)
+        } else {
+            tiles.setTilemap(tilemap`LEvel 2 NoClip`)
         }
     }
 })
